@@ -4,16 +4,27 @@ import { Flower } from 'lucide-react';
 const FLOWER_COUNT = 120;
 export function FloatingFlowers() {
   const flowers = useMemo(() => {
-    return Array.from({ length: FLOWER_COUNT }).map((_, i) => ({
-      id: i,
-      initialX: Math.random() * 100,
-      initialScale: Math.random() * 0.4 + 0.6, // 0.6-1.0 for prominence
-      opacity: Math.random() * 0.3 + 0.5,      // 0.5 to 0.8 for better visibility
-      duration: Math.random() * 6 + 8,         // Slightly faster than background hearts
-      delay: Math.random() * 10,
-      size: Math.random() * 8 + 16,            // 16-24px
-      rotation: Math.random() * 360,
-    }));
+    return Array.from({ length: FLOWER_COUNT }).map((_, i) => {
+      // Use 0-95% for horizontal position to avoid sticking to the absolute right edge
+      const initialX = Math.random() * 95;
+      const initialScale = Math.random() * 0.4 + 0.6; // 0.6-1.0
+      const opacity = Math.random() * 0.3 + 0.3;      // Target range 0.3-0.6
+      const duration = Math.random() * 6 + 10;        // 10-16s for a gentler float
+      // Expanded delay range to 15s to prevent clumping on start
+      const delay = Math.random() * 15;
+      const size = Math.random() * 8 + 16;            // 16-24px
+      const rotation = Math.random() * 360;
+      return {
+        id: i,
+        initialX,
+        initialScale,
+        opacity,
+        duration,
+        delay,
+        size,
+        rotation,
+      };
+    });
   }, []);
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 rounded-[inherit]">
@@ -29,6 +40,8 @@ export function FloatingFlowers() {
           }}
           animate={{
             y: '-10%',
+            // Maintain constant X to prevent diagonal clumping/intersecting paths
+            x: `${flower.initialX}%`,
             rotate: flower.rotation + 360,
           }}
           transition={{
@@ -37,11 +50,11 @@ export function FloatingFlowers() {
             ease: "linear",
             delay: flower.delay,
           }}
-          className="absolute text-primary/70"
+          className="absolute text-primary/60"
         >
           <Flower
             size={flower.size}
-            strokeWidth={2.5}
+            strokeWidth={2}
           />
         </motion.div>
       ))}
