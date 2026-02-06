@@ -4,7 +4,6 @@
 @tailwind utilities;
 @layer base {
   :root {
-    /* Pink-centric Color Palette */
     --background: 330 70% 98%;
     --foreground: 330 40% 10%;
     --primary: 330 100% 60%;
@@ -60,6 +59,7 @@
     @apply bg-background text-foreground;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 }
 @layer components {
@@ -68,5 +68,8 @@
   }
   .font-cursive {
     font-family: 'Great Vibes', cursive;
+    /* Prevent clipping of flourishes */
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
   }
 }
