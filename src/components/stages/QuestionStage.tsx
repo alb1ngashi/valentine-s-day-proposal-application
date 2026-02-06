@@ -14,7 +14,7 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
     // Constraint to 80% of viewport to prevent flying off-screen completely
-    const maxX = (viewportWidth * 0.4); 
+    const maxX = (viewportWidth * 0.4);
     const maxY = (viewportHeight * 0.4);
     const minJump = 150; // Minimum jump distance to make it look dramatic
     let newX = (Math.random() - 0.5) * viewportWidth * 0.8;
@@ -38,9 +38,9 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
     >
       <div className="space-y-6">
         <motion.h2
-          className="text-5xl md:text-7xl font-cursive text-primary leading-tight text-pretty px-4"
-          animate={{ scale: [1, 1.03, 1] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="text-6xl md:text-8xl font-cursive text-primary leading-tight text-pretty px-4"
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         >
           Will you be my Valentine?
         </motion.h2>

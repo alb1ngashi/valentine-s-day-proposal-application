@@ -54,8 +54,8 @@ export function HomePage() {
         </div>
       </div>
       <Toaster richColors position="bottom-center" />
-      <footer className="fixed bottom-4 left-0 right-0 text-center text-[10px] md:text-xs text-muted-foreground/40 pointer-events-none tracking-widest uppercase z-0">
-        Made with love • 2024
+      <footer className="fixed bottom-6 left-0 right-0 text-center text-[10px] md:text-xs text-muted-foreground/30 pointer-events-none tracking-[0.3em] uppercase z-0 font-bold">
+        MADE WITH LOVE BY BINIIIIIIIII
       </footer>
     </div>
   );
