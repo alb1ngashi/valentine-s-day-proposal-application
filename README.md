@@ -1,6 +1,6 @@
 # Cupid Ask
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/alb1ngashi/valentine-s-day-proposal-application)
 
 ## Overview
 
@@ -113,7 +113,7 @@ This builds static assets and deploys the Worker.
 
 For CI/CD, use the Wrangler GitHub Action or direct deploy.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/alb1ngashi/valentine-s-day-proposal-application)
 
 ## Contributing
 
