@@ -7,11 +7,11 @@ export function FloatingFlowers() {
     return Array.from({ length: FLOWER_COUNT }).map((_, i) => ({
       id: i,
       initialX: Math.random() * 100,
-      initialScale: Math.random() * 0.4 + 0.4, // Slightly larger base scale for visibility
-      opacity: Math.random() * 0.2 + 0.2,      // 0.2 to 0.4 as per requirement
+      initialScale: Math.random() * 0.4 + 0.6, // 0.6-1.0 for prominence
+      opacity: Math.random() * 0.3 + 0.5,      // 0.5 to 0.8 for better visibility
       duration: Math.random() * 6 + 8,         // Slightly faster than background hearts
       delay: Math.random() * 10,
-      size: Math.random() * 6 + 12,            // 12-18px
+      size: Math.random() * 8 + 16,            // 16-24px
       rotation: Math.random() * 360,
     }));
   }, []);
@@ -37,11 +37,11 @@ export function FloatingFlowers() {
             ease: "linear",
             delay: flower.delay,
           }}
-          className="absolute text-primary/40"
+          className="absolute text-primary/70"
         >
           <Flower
             size={flower.size}
-            strokeWidth={1.5}
+            strokeWidth={2.5}
           />
         </motion.div>
       ))}
