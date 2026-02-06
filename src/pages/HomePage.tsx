@@ -30,19 +30,20 @@ export function HomePage() {
       <FloatingHearts />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 pointer-events-none">
         <div className="py-8 md:py-10 lg:py-12 flex justify-center pointer-events-auto">
-          <div className="w-full max-w-[520px] glass p-8 md:p-14 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl relative min-h-[450px] flex flex-col justify-center">
+          {/* overflow-visible allows the No button to escape the card bounds */}
+          <div className="w-full max-w-[520px] glass p-8 md:p-14 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl relative min-h-[450px] flex flex-col justify-center overflow-visible">
             <AnimatePresence mode="wait">
               {isIntroStage && (
-                <IntroStage 
-                  key={`intro-${currentStep}`} 
-                  text={INTRO_STEPS[currentStep]} 
-                  onNext={handleNext} 
+                <IntroStage
+                  key={`intro-${currentStep}`}
+                  text={INTRO_STEPS[currentStep]}
+                  onNext={handleNext}
                 />
               )}
               {isQuestionStage && (
-                <QuestionStage 
-                  key="question" 
-                  onSuccess={handleSuccess} 
+                <QuestionStage
+                  key="question"
+                  onSuccess={handleSuccess}
                 />
               )}
               {isFinished && (

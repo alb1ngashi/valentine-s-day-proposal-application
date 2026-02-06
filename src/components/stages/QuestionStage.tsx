@@ -10,21 +10,21 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
   const prefersReducedMotion = useReducedMotion();
   const handleRunaway = useCallback(() => {
     if (prefersReducedMotion) return;
-    const padding = 100;
+    // Use viewport dimensions to ensure the button stays within reachable bounds
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    const maxX = (viewportWidth / 2) - padding;
-    const maxY = (viewportHeight / 2) - padding;
-    const minJump = 120;
-    let newX = (Math.random() - 0.5) * viewportWidth * 0.7;
-    let newY = (Math.random() - 0.5) * viewportHeight * 0.7;
+    // Constraint to 80% of viewport to prevent flying off-screen completely
+    const maxX = (viewportWidth * 0.4); 
+    const maxY = (viewportHeight * 0.4);
+    const minJump = 150; // Minimum jump distance to make it look dramatic
+    let newX = (Math.random() - 0.5) * viewportWidth * 0.8;
+    let newY = (Math.random() - 0.5) * viewportHeight * 0.8;
+    // Clamp values
     newX = Math.max(-maxX, Math.min(maxX, newX));
     newY = Math.max(-maxY, Math.min(maxY, newY));
+    // Ensure it actually moves a significant amount
     if (Math.abs(newX - noButtonPos.x) < minJump) {
       newX = newX > 0 ? newX + minJump : newX - minJump;
-    }
-    if (Math.abs(newY - noButtonPos.y) < minJump) {
-      newY = newY > 0 ? newY + minJump : newY - minJump;
     }
     setNoButtonPos({ x: newX, y: newY });
   }, [prefersReducedMotion, noButtonPos]);
@@ -42,10 +42,10 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
           animate={{ scale: [1, 1.03, 1] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          Will you be my Valentine ?
+          Will you be my Valentine?
         </motion.h2>
         <p className="text-xl text-muted-foreground italic font-medium">
-          (I promise to buy you chocolate hihih 🍫 )
+          (I promise to buy you chocolate hihih 🍫)
         </p>
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative w-full max-w-sm mx-auto h-24 mt-8">
@@ -60,13 +60,13 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
           animate={{ x: noButtonPos.x, y: noButtonPos.y }}
           transition={{
             type: 'spring',
-            damping: 15,
-            stiffness: 250,
-            mass: 0.6
+            damping: 20,
+            stiffness: 300,
+            mass: 0.5
           }}
           onMouseEnter={handleRunaway}
           onTouchStart={handleRunaway}
-          className="z-10 w-full sm:w-44 absolute sm:static"
+          className="z-10 w-full sm:w-44"
         >
           <Button
             variant="outline"
