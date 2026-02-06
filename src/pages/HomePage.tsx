@@ -6,6 +6,7 @@ import { QuestionStage } from '@/components/stages/QuestionStage';
 import { SuccessStage } from '@/components/stages/SuccessStage';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Toaster } from '@/components/ui/sonner';
+import { FloatingFlowers } from '@/components/FloatingFlowers';
 const INTRO_STEPS = [
   "Hey Beautiful ...",
   "We've made so many memories ...",
@@ -34,6 +35,7 @@ export function HomePage() {
         <div className="py-8 md:py-10 lg:py-12 flex justify-center pointer-events-auto">
           {/* overflow-visible allows the No button to escape the card bounds in QuestionStage */}
           <div className="w-full max-w-[520px] glass p-8 md:p-14 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl relative min-h-[450px] flex flex-col justify-center overflow-visible">
+            {!isFinished && <FloatingFlowers />}
             <AnimatePresence mode="wait">
               {isIntroStage && (
                 <IntroStage
