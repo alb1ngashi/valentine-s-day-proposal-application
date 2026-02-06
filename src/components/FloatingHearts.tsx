@@ -12,7 +12,7 @@ export function FloatingHearts() {
             y: '110vh',
             x: `${Math.random() * 100}vw`,
             scale: Math.random() * 0.4 + 0.4,
-            opacity: Math.random() * 0.3 + 0.3
+            opacity: Math.random() * 0.2 + 0.2
           }}
           animate={{
             y: '-10vh',
@@ -23,11 +23,11 @@ export function FloatingHearts() {
             ease: "linear",
             delay: Math.random() * 15
           }}
-          className="absolute text-primary"
+          className="absolute text-primary/40"
         >
           <Heart
             fill="currentColor"
-            size={Math.random() * 6 + 10} // 10px-16px range
+            size={Math.random() * 8 + 20} // 20px-28px range for more impact
             className="rotate-[15deg]"
           />
         </motion.div>

@@ -6,29 +6,46 @@ import { QuestionStage } from '@/components/stages/QuestionStage';
 import { SuccessStage } from '@/components/stages/SuccessStage';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Toaster } from '@/components/ui/sonner';
-type AppStage = 'intro' | 'question' | 'success';
+const INTRO_STEPS = [
+  "Hey Beautiful ...",
+  "We've made so many memories ...",
+  "You make me smile every single day ...",
+  "So I have a question ..."
+];
 export function HomePage() {
-  const [stage, setStage] = useState<AppStage>('intro');
+  const [currentStep, setCurrentStep] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
+  const handleNext = () => {
+    setCurrentStep((prev) => prev + 1);
+  };
+  const handleSuccess = () => {
+    setIsFinished(true);
+  };
+  const totalIntroSteps = INTRO_STEPS.length;
+  const isQuestionStage = currentStep === totalIntroSteps && !isFinished;
+  const isIntroStage = currentStep < totalIntroSteps && !isFinished;
   return (
     <div className="min-h-screen w-full bg-background flex items-center justify-center p-4 overflow-hidden relative">
       <ThemeToggle />
       <FloatingHearts />
-      {/* 
-          Main Container: 
-          We use a larger z-index for the card but ensure its parent doesn't clip
-          the absolute-positioned runaway button in the QuestionStage.
-      */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 pointer-events-none">
         <div className="py-8 md:py-10 lg:py-12 flex justify-center pointer-events-auto">
-          <div className="w-full max-w-[520px] glass p-8 md:p-14 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl relative">
+          <div className="w-full max-w-[520px] glass p-8 md:p-14 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl relative min-h-[450px] flex flex-col justify-center">
             <AnimatePresence mode="wait">
-              {stage === 'intro' && (
-                <IntroStage key="intro" onNext={() => setStage('question')} />
+              {isIntroStage && (
+                <IntroStage 
+                  key={`intro-${currentStep}`} 
+                  text={INTRO_STEPS[currentStep]} 
+                  onNext={handleNext} 
+                />
               )}
-              {stage === 'question' && (
-                <QuestionStage key="question" onSuccess={() => setStage('success')} />
+              {isQuestionStage && (
+                <QuestionStage 
+                  key="question" 
+                  onSuccess={handleSuccess} 
+                />
               )}
-              {stage === 'success' && (
+              {isFinished && (
                 <SuccessStage key="success" />
               )}
             </AnimatePresence>

@@ -10,23 +10,16 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
   const prefersReducedMotion = useReducedMotion();
   const handleRunaway = useCallback(() => {
     if (prefersReducedMotion) return;
-    // We want the button to jump away, but stay within the viewport bounds
-    // with some padding to prevent it from clipping or going behind the card
-    const padding = 80;
+    const padding = 100;
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
-    // Calculate a safe range relative to current center
-    // We use window coordinates to ensure it stays visible regardless of container size
     const maxX = (viewportWidth / 2) - padding;
     const maxY = (viewportHeight / 2) - padding;
-    // Minimum jump distance to ensure it actually "runs away"
-    const minJump = 100;
-    let newX = (Math.random() - 0.5) * viewportWidth * 0.8;
-    let newY = (Math.random() - 0.5) * viewportHeight * 0.8;
-    // Clamp to viewport
+    const minJump = 120;
+    let newX = (Math.random() - 0.5) * viewportWidth * 0.7;
+    let newY = (Math.random() - 0.5) * viewportHeight * 0.7;
     newX = Math.max(-maxX, Math.min(maxX, newX));
     newY = Math.max(-maxY, Math.min(maxY, newY));
-    // If the jump is too small, push it further
     if (Math.abs(newX - noButtonPos.x) < minJump) {
       newX = newX > 0 ? newX + minJump : newX - minJump;
     }
@@ -43,31 +36,33 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
       className="text-center space-y-12 min-h-[400px] flex flex-col justify-center items-center"
       ref={containerRef}
     >
-      <div className="space-y-4">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-display font-black text-foreground leading-tight text-pretty"
-          animate={{ scale: [1, 1.02, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
+      <div className="space-y-6">
+        <motion.h2
+          className="text-5xl md:text-7xl font-cursive text-primary leading-tight text-pretty px-4"
+          animate={{ scale: [1, 1.03, 1] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          Will you be my <span className="text-primary">Valentine?</span>
+          Will you be my Valentine ?
         </motion.h2>
-        <p className="text-lg text-muted-foreground italic font-medium">Think carefully...</p>
+        <p className="text-xl text-muted-foreground italic font-medium">
+          (I promise to buy you chocolate hihih 🍫 )
+        </p>
       </div>
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative w-full max-w-sm mx-auto h-24">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative w-full max-w-sm mx-auto h-24 mt-8">
         <Button
           size="lg"
           onClick={onSuccess}
-          className="z-20 w-full sm:w-44 h-18 rounded-full text-2xl font-bold bg-primary hover:bg-primary/90 shadow-xl transition-all hover:scale-110 active:scale-90"
+          className="z-20 w-full sm:w-44 h-18 rounded-full text-2xl font-bold bg-primary text-white hover:bg-primary/90 shadow-xl transition-all hover:scale-110 active:scale-90"
         >
           YES!
         </Button>
         <motion.div
           animate={{ x: noButtonPos.x, y: noButtonPos.y }}
-          transition={{ 
-            type: 'spring', 
-            damping: 12, 
-            stiffness: 200,
-            mass: 0.8
+          transition={{
+            type: 'spring',
+            damping: 15,
+            stiffness: 250,
+            mass: 0.6
           }}
           onMouseEnter={handleRunaway}
           onTouchStart={handleRunaway}
