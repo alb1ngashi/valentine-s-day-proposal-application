@@ -1,18 +1,16 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Flower } from 'lucide-react';
-const FLOWER_COUNT = 120;
+const FLOWER_COUNT = 80;
 export function FloatingFlowers() {
   const flowers = useMemo(() => {
     return Array.from({ length: FLOWER_COUNT }).map((_, i) => {
-      // Use 0-95% for horizontal position to avoid sticking to the absolute right edge
       const initialX = Math.random() * 95;
-      const initialScale = Math.random() * 0.4 + 0.6; // 0.6-1.0
-      const opacity = Math.random() * 0.3 + 0.3;      // Target range 0.3-0.6
-      const duration = Math.random() * 6 + 10;        // 10-16s for a gentler float
-      // Expanded delay range to 15s to prevent clumping on start
-      const delay = Math.random() * 15;
-      const size = Math.random() * 8 + 16;            // 16-24px
+      const initialScale = Math.random() * 0.3 + 0.6; // 0.6-0.9
+      const opacity = Math.random() * 0.25 + 0.25;    // Target range 0.25-0.5 for subtlety
+      const duration = Math.random() * 8 + 14;        // 14-22s for slower, gentler float
+      const delay = Math.random() * 20;               // Spread out entry significantly
+      const size = Math.random() * 6 + 14;            // 14-20px
       const rotation = Math.random() * 360;
       return {
         id: i,
@@ -39,9 +37,7 @@ export function FloatingFlowers() {
             rotate: flower.rotation,
           }}
           animate={{
-            y: '-10%',
-            // Maintain constant X to prevent diagonal clumping/intersecting paths
-            x: `${flower.initialX}%`,
+            y: '-15%',
             rotate: flower.rotation + 360,
           }}
           transition={{
@@ -50,11 +46,11 @@ export function FloatingFlowers() {
             ease: "linear",
             delay: flower.delay,
           }}
-          className="absolute text-primary/60"
+          className="absolute text-primary/40"
         >
           <Flower
             size={flower.size}
-            strokeWidth={2}
+            strokeWidth={1.5}
           />
         </motion.div>
       ))}

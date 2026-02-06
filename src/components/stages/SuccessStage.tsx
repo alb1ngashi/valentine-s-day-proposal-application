@@ -17,33 +17,35 @@ export function SuccessStage() {
           <motion.div
             key={i}
             animate={{
-              y: [0, -25, 0],
-              scale: [1, 1.3, 1],
-              rotate: [0, i % 2 === 0 ? 15 : -15, 0]
+              y: [0, -20, 0],
+              scale: [1, 1.2, 1],
+              rotate: [0, i % 2 === 0 ? 10 : -10, 0]
             }}
             transition={{
               repeat: Infinity,
-              duration: 2,
-              delay: i * 0.3
+              duration: 2.5,
+              delay: i * 0.4
             }}
           >
-            <Heart size={window.innerWidth < 768 ? 40 : 56} className="text-primary fill-primary drop-shadow-lg" />
+            <Heart 
+              className="text-primary fill-primary drop-shadow-lg w-10 h-10 md:w-14 md:h-14" 
+            />
           </motion.div>
         ))}
       </div>
       <div className="space-y-4 md:space-y-6">
-        <h1 className="text-6xl md:text-8xl font-cursive text-primary leading-tight drop-shadow-sm">
-          YAYYY! ❤��
+        <h1 className="text-5xl md:text-8xl font-cursive text-primary leading-tight drop-shadow-sm">
+          YAYYY! ❤️❤️
         </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground font-medium px-4">
+        <p className="text-lg md:text-2xl text-muted-foreground font-medium px-4">
           I knew you'd say yes! You're the best!
         </p>
         <motion.div
-          animate={{ opacity: [0.7, 1, 0.7] }}
+          animate={{ opacity: [0.8, 1, 0.8] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="pt-6"
         >
-          <p className="text-lg md:text-xl text-primary font-bold bg-primary/10 py-3 px-6 rounded-full inline-block">
+          <p className="text-base md:text-xl text-primary font-bold bg-primary/10 py-2 md:py-3 px-5 md:px-6 rounded-full inline-block">
             📸 Screenshot this and send it to me!
           </p>
         </motion.div>
@@ -54,7 +56,7 @@ export function SuccessStage() {
         transition={{ delay: 1.5 }}
         className="pt-4"
       >
-        <p className="text-sm md:text-base text-muted-foreground italic font-medium">
+        <p className="text-xs md:text-base text-muted-foreground italic font-medium">
           You just made my day! ✨
         </p>
       </motion.div>
