@@ -1,33 +1,44 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
 const HEART_COUNT = 120;
 export function FloatingHearts() {
+  const hearts = useMemo(() => {
+    return Array.from({ length: HEART_COUNT }).map((_, i) => ({
+      id: i,
+      initialX: Math.random() * 100,
+      initialScale: Math.random() * 0.4 + 0.3,
+      initialOpacity: Math.random() * 0.2 + 0.8,
+      duration: Math.random() * 8 + 12,
+      delay: Math.random() * 20,
+      size: Math.random() * 8 + 18,
+    }));
+  }, []);
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {Array.from({ length: HEART_COUNT }).map((_, i) => (
+      {hearts.map((heart) => (
         <motion.div
-          key={i}
+          key={heart.id}
           initial={{
             y: '110vh',
-            x: `${Math.random() * 100}vw`,
-            scale: Math.random() * 0.4 + 0.3,
-            opacity: Math.random() * 0.2 + 0.8 // High visibility (0.8 - 1.0)
+            x: `${heart.initialX}vw`,
+            scale: heart.initialScale,
+            opacity: heart.initialOpacity,
           }}
           animate={{
             y: '-10vh',
           }}
           transition={{
-            duration: Math.random() * 8 + 12, // Faster motion (12-20s)
+            duration: heart.duration,
             repeat: Infinity,
             ease: "linear",
-            delay: Math.random() * 20
+            delay: heart.delay,
           }}
-          className="absolute text-primary" // Solid pink color
+          className="absolute text-primary"
         >
           <Heart
             fill="currentColor"
-            size={Math.random() * 8 + 18} // Size range 18-26px
+            size={heart.size}
             className="rotate-[15deg]"
           />
         </motion.div>
