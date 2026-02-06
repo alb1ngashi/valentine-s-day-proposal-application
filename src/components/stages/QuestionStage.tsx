@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 interface QuestionStageProps {
@@ -15,23 +15,23 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
     setNoButtonPos({ x: randomX, y: randomY });
   }, [prefersReducedMotion]);
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, y: -20 }}
       className="text-center space-y-12 min-h-[400px] flex flex-col justify-center items-center"
     >
       <div className="space-y-4">
-        <h2 className="text-4xl md:text-6xl font-display font-bold text-foreground leading-tight">
+        <h2 className="text-4xl md:text-5xl font-display font-black text-foreground leading-tight text-pretty">
           Will you be my <span className="text-primary">Valentine?</span>
         </h2>
-        <p className="text-lg text-muted-foreground italic">Think carefully...</p>
+        <p className="text-lg text-muted-foreground italic font-medium">Think carefully...</p>
       </div>
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative w-full max-w-md mx-auto">
-        <Button 
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 relative w-full max-w-sm mx-auto">
+        <Button
           size="lg"
           onClick={onSuccess}
-          className="z-10 w-full sm:w-40 h-16 rounded-full text-2xl font-bold bg-primary hover:bg-primary/90 shadow-xl"
+          className="z-10 w-full sm:w-44 h-18 rounded-full text-2xl font-bold bg-primary hover:bg-primary/90 shadow-xl transition-all hover:scale-105 active:scale-95"
         >
           YES!
         </Button>
@@ -40,12 +40,12 @@ export function QuestionStage({ onSuccess }: QuestionStageProps) {
           transition={{ type: 'spring', damping: 15, stiffness: 150 }}
           onMouseEnter={handleRunaway}
           onTouchStart={handleRunaway}
-          className="w-full sm:w-40"
+          className="w-full sm:w-44"
         >
-          <Button 
+          <Button
             variant="outline"
             size="lg"
-            className="w-full h-16 rounded-full text-2xl font-medium border-2 hover:bg-transparent cursor-default"
+            className="w-full h-18 rounded-full text-2xl font-medium border-2 border-primary/20 hover:bg-accent/50 cursor-default"
           >
             No
           </Button>
