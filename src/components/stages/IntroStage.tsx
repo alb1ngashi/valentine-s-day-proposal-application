@@ -14,7 +14,7 @@ export function IntroStage({ text, onNext }: IntroStageProps) {
       className="text-center space-y-12"
     >
       <div className="space-y-4">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-cursive text-primary leading-[1.1] tracking-tight text-pretty">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-cursive text-primary leading-[1.1] tracking-tight text-pretty">
           {text}
         </h1>
       </div>
