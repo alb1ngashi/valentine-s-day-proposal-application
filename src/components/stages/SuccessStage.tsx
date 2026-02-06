@@ -7,58 +7,47 @@ export function SuccessStage() {
     triggerHeartConfetti();
   }, []);
   return (
-    <motion.div
+    <motion.div 
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="text-center space-y-8 md:space-y-10 py-4"
+      className="text-center space-y-8"
     >
-      <div className="flex justify-center gap-4 md:gap-6">
+      <div className="flex justify-center gap-2">
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            animate={{
+            animate={{ 
               y: [0, -20, 0],
-              scale: [1, 1.2, 1],
-              rotate: [0, i % 2 === 0 ? 10 : -10, 0]
+              scale: [1, 1.2, 1]
             }}
-            transition={{
-              repeat: Infinity,
-              duration: 2.5,
-              delay: i * 0.4
+            transition={{ 
+              repeat: Infinity, 
+              duration: 1.5, 
+              delay: i * 0.2 
             }}
           >
-            <Heart 
-              className="text-primary fill-primary drop-shadow-lg w-10 h-10 md:w-14 md:h-14" 
-            />
+            <Heart size={48} className="text-primary fill-primary" />
           </motion.div>
         ))}
       </div>
-      <div className="space-y-4 md:space-y-6">
-        <h1 className="text-5xl md:text-8xl font-cursive text-primary leading-tight drop-shadow-sm">
-          YAYYY! ❤️❤️
+      <div className="space-y-4">
+        <h1 className="text-5xl md:text-7xl font-display font-black text-foreground">
+          YAYYY! ❤️
         </h1>
-        <p className="text-lg md:text-2xl text-muted-foreground font-medium px-4">
-          I knew you'd say yes! You're the best!
+        <p className="text-2xl text-muted-foreground font-medium">
+          I knew you'd say yes! 
         </p>
-        <motion.div
-          animate={{ opacity: [0.8, 1, 0.8] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="pt-6"
-        >
-          <p className="text-base md:text-xl text-primary font-bold bg-primary/10 py-2 md:py-3 px-5 md:px-6 rounded-full inline-block">
-            📸 Screenshot this and send it to me!
-          </p>
-        </motion.div>
+        <p className="text-lg text-primary font-semibold pt-4">
+          Screenshot this and send it to me!
+        </p>
       </div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="pt-4"
+        transition={{ delay: 1 }}
+        className="pt-8"
       >
-        <p className="text-xs md:text-base text-muted-foreground italic font-medium">
-          You just made my day! ✨
-        </p>
+        <p className="text-sm text-muted-foreground">You just made my day! ✨</p>
       </motion.div>
     </motion.div>
   );
