@@ -5,7 +5,7 @@ const FLOWER_COUNT = 80;
 export function FloatingFlowers() {
   const flowers = useMemo(() => {
     return Array.from({ length: FLOWER_COUNT }).map((_, i) => {
-      const initialX = Math.random() * 95;
+      const initialX = Math.random() * 100;
       const initialScale = Math.random() * 0.3 + 0.6; // 0.6-0.9
       const opacity = Math.random() * 0.25 + 0.25;    // Target range 0.25-0.5 for subtlety
       const duration = Math.random() * 8 + 14;        // 14-22s for slower, gentler float
@@ -30,14 +30,14 @@ export function FloatingFlowers() {
         <motion.div
           key={flower.id}
           initial={{
-            y: '110%',
-            x: `${flower.initialX}%`,
+            left: `${flower.initialX}%`,
+            top: '120%',
             scale: flower.initialScale,
             opacity: flower.opacity,
             rotate: flower.rotation,
           }}
           animate={{
-            y: '-15%',
+            top: '-30%',
             rotate: flower.rotation + 360,
           }}
           transition={{
